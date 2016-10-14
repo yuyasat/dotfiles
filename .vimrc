@@ -33,7 +33,7 @@ set backspace=indent,eol,start " バックスペース有効化
 set ambiwidth=double " 曖昧幅の文字幅をダブルにする
 set nofoldenable " 折りたたみ無効化
 set clipboard=unnamed,autoselect " ヤンク時にクリップボードにコピー
-set mouse=a " マウス有効化
+"set mouse=a " マウス有効化
 set vb t_vb= "ビープ音無効化
 set hlsearch " 検索文字をハイライト
 
@@ -77,7 +77,7 @@ if has('vim_starting')
     NeoBundle 'VimClojure'
     NeoBundle 'Shougo/unite.vim'
     NeoBundle 'hail2u/vim-css3-syntax'
-    NeoBundle 'taichouchou2/html5.vim'
+    "NeoBundle 'taichouchou2/html5.vim'
     NeoBundle 'taichouchou2/vim-javascript'
     NeoBundle 'kchmck/vim-coffee-script'
     call neobundle#end()
