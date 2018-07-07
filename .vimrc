@@ -68,20 +68,5 @@ filetype plugin indent off            " for NeoBundle
 set whichwrap=b,s,<,>,[,] " 行末で右矢印で次の行の先頭へ等
 set ttymouse=xterm2
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
-    NeoBundle 'Shougo/neobundle.vim'
-    NeoBundle 'Shougo/vimproc'
-    NeoBundle 'VimClojure'
-    NeoBundle 'Shougo/unite.vim'
-    NeoBundle 'hail2u/vim-css3-syntax'
-    "NeoBundle 'taichouchou2/html5.vim'
-    NeoBundle 'taichouchou2/vim-javascript'
-    NeoBundle 'kchmck/vim-coffee-script'
-    call neobundle#end()
-endif
-
 filetype plugin indent on       " ファイルタイプ関連を再度有効化
 
