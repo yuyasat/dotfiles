@@ -47,6 +47,7 @@ set hlsearch " 検索文字をハイライト
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
 autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 " 不可視文字の表示
 set list
