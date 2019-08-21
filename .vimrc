@@ -3,6 +3,7 @@ filetype off " 一時的にファイルタイプ関連を無効化
 
 " _/_/_/_/ Common settings _/_/_/_/
 syntax enable
+
 set background=dark
 colorscheme elflord
 
@@ -12,6 +13,12 @@ set fileformats=unix,dos,mac
 
 highlight ColorColumn ctermbg=236
 execute "set colorcolumn=" . join(range(81,100), ',')
+
+" vimdiff用の設定
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
 
 set nobackup " バックアップを無効化
 set number " 行番号を表示
