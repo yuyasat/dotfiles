@@ -19,6 +19,14 @@ if [ -f ~/.bashrc ] ; then
 fi
 ```
 
+## For vim
+```
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
 ## Install tools
 ```bash
 # Install homebrew

@@ -11,14 +11,12 @@ set encoding=utf-8
 set fileencodings=utf-8,sjis,euc
 set fileformats=unix,dos,mac
 
-highlight ColorColumn ctermbg=236
-execute "set colorcolumn=" . join(range(81,100), ',')
-
 " vimdiff用の設定
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
+highlight StatusLine term=none cterm=none ctermfg=white ctermbg=black
 
 set nobackup " バックアップを無効化
 set number " 行番号を表示
@@ -26,7 +24,7 @@ set incsearch " インクリメンタルサーチ
 set ignorecase smartcase " 小文字のみの検索時に大文字小文字を無視
 set showmatch " 対応する括弧のハイライト表示
 set showmode " モード表示
-set title " 編集中のファイル名を表示
+set laststatus=2 " 下の方にファイル名を表示する
 set ruler " ルーラーを表示
 set expandtab " タブ入力を複数の空白入力に置き換え
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -70,72 +68,27 @@ endif
 "-----ここからTaki-----"
 source $VIMRUNTIME/macros/matchit.vim "%で移動できる"
 
-"-----resence（ruby保管)-----"
-" dein
-" Vim起動完了時にインストール
-augroup PluginInstall
-  autocmd!
-  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
-augroup END
-
-" 各プラグインをインストールするディレクトリ
-let s:plugin_dir = expand('~/.vim/')
-
-" dein.vimをインストールするディレクトリをランタイムパスへ追加
-let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
-execute 'set runtimepath+=' . s:dein_dir
-
-" dein.vimがまだ入ってなければ 最初に git clone
-if !isdirectory(s:dein_dir)
-  call mkdir(s:dein_dir, 'p')
-  silent execute printf('!git clone %s %s', 'https://github.com/Shougo/dein.vim', s:dein_dir)
-endif
-
-"dein plugin settings
-if dein#load_state(s:plugin_dir)
-  call dein#begin(s:plugin_dir)
-endif
-
-" ここからインストールするプラグイン
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/neocomplcache.vim')
-call dein#add('Shougo/neocomplcache-rsense.vim')
-
-
-" neocomplcacheの設定
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-
-
-" Rsense用の設定
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
-"rsenseのインストールフォルダがデフォルトと異なるので設定
-let g:rsenseHome = expand("*Rsenseのインストールパスをここにペースト*")
-let g:rsenseUseOmniFunc = 1
-
 "-----NeoBundle prepare-----"
 set nocompatible
 filetype plugin indent off            " for NeoBundle
 set whichwrap=b,s,<,>,[,] " 行末で右矢印で次の行の先頭へ等
 set ttymouse=xterm2
+
+
+execute pathogen#infect()
+syntax on
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'slim-template/vim-slim.git'
+
+call vundle#end()
+syntax enable
+
+highlight ColorColumn ctermbg=236
+execute "set colorcolumn=" . join(range(81,100), ',')
 
 filetype plugin indent on       " ファイルタイプ関連を再度有効化
 
